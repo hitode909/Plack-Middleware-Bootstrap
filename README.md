@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/hitode909/Plack-Middleware-Bootstrap.svg?branch=master)](https://travis-ci.org/hitode909/Plack-Middleware-Bootstrap)
+[![Build Status](https://travis-ci.org/hitode909/Plack-Middleware-Bootstrap.png?branch=master)](https://travis-ci.org/hitode909/Plack-Middleware-Bootstrap)
 # NAME
 
 Plack::Middleware::Bootstrap - A Plack Middleware to wrap simple HTML with Botstrap design template
