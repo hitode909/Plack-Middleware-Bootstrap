@@ -5,24 +5,114 @@ use warnings;
 
 our $VERSION = "0.01";
 
+use parent qw(Plack::Middleware);
+use Plack::Util ();
+use Plack::Response;
 
+use Text::MicroTemplate::DataSection qw();
+
+sub call {
+    my ($self, $env) = @_;
+
+    Plack::Util::response_cb(
+        $self->app->($env),
+        sub {
+            my $res = shift;
+
+            my $plack_res = Plack::Response->new(@$res);
+            return unless $plack_res->content_type =~ /\Atext\/html/;
+
+            my $body;
+            Plack::Util::foreach($res->[2] || [], sub { $body .= $_[0] });
+
+            my $renderer = Text::MicroTemplate::DataSection->new(
+                escape_func => undef
+            );
+            $res->[2] = [ $renderer->render_mt('template.mt', 'head', $body) ];
+        });
+}
 
 1;
+__DATA__
+@@ template.mt
+? my ($head, $body) = @_;
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+?= $body
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
 __END__
 
 =encoding utf-8
 
 =head1 NAME
 
-Plack::Middleware::Bootstrap - It's new $module
+Plack::Middleware::Bootstrap - Wrap simple HTML with Botstrap design template
 
 =head1 SYNOPSIS
 
-    use Plack::Middleware::Bootstrap;
+    use Plack::Builder;
+
+    my $app = sub {
+        return [ 200, [ 'Content-Type' => 'text/html' ], [ "<h1>Hello</h1>\n<p>World!</p>" ] ];
+    };
+    builder {
+        enable "Bootstrap";
+        $app;
+    };
+
+And you will get
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+      </head>
+      <body>
+        <div class="container">
+    <h1>Hello</h1>
+    <p>World!</p>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+      </body>
+    </html>
 
 =head1 DESCRIPTION
 
-Plack::Middleware::Bootstrap is ...
+Plack::Middleware::Bootstrap wraps HTML with Bootstrap design template.
+
+This is useful to make simple HTML better.
 
 =head1 LICENSE
 
