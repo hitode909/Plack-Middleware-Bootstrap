@@ -1,5 +1,5 @@
 {
-   "abstract" : "Wrap simple HTML with Botstrap design template",
+   "abstract" : "A Plack Middleware to wrap simple HTML with Botstrap design template",
    "author" : [
       "This library is free software; you can redistribute it and/or modify"
    ],
@@ -54,6 +54,17 @@
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/hitode909/Plack-Middleware-Bootstrap/issues"
+      },
+      "homepage" : "https://github.com/hitode909/Plack-Middleware-Bootstrap",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/hitode909/Plack-Middleware-Bootstrap.git",
+         "web" : "https://github.com/hitode909/Plack-Middleware-Bootstrap"
+      }
+   },
    "version" : "0.01",
    "x_authority" : "cpan:HITODE",
    "x_contributors" : [

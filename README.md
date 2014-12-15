@@ -1,6 +1,7 @@
+[![Build Status](https://travis-ci.org/hitode909/Plack-Middleware-Bootstrap.svg?branch=master)](https://travis-ci.org/hitode909/Plack-Middleware-Bootstrap)
 # NAME
 
-Plack::Middleware::Bootstrap - Wrap simple HTML with Botstrap design template
+Plack::Middleware::Bootstrap - A Plack Middleware to wrap simple HTML with Botstrap design template
 
 # SYNOPSIS
 
@@ -47,6 +48,10 @@ And you will get
 Plack::Middleware::Bootstrap wraps HTML with Bootstrap design template.
 
 This is useful to make simple HTML better.
+
+# SEE ALSO
+
+[http://getbootstrap.com/](http://getbootstrap.com/) [Plack::Middleware](https://metacpan.org/pod/Plack::Middleware) [Plack::Builder](https://metacpan.org/pod/Plack::Builder)
 
 # LICENSE
 
