@@ -93,6 +93,22 @@ HTML
     };
 };
 
+subtest 'HTML with head' => sub {
+    my $app = builder {
+        enable 'Bootstrap';
+        sub {
+            return [ 200, [ 'Content-Type' => 'text/html; charset=utf-8' ], [ "<head>Hello</head><body>World!</body>" ] ];
+        }
+    };
+
+    test_psgi $app => sub {
+        my $server = shift;
+
+        my $res = $server->(GET "http://localhost/");
+        is $res->code, 200;
+    };
+};
+
 subtest 'when not HTML' => sub {
     my $body = "Hello, World!";
     my $app = builder {
