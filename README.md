@@ -11,7 +11,7 @@ Plack::Middleware::Bootstrap - A Plack Middleware to wrap simple HTML with Botst
         return [
             200,
             [ 'Content-Type' => 'text/html' ],
-            [ "<h1>Hello</h1>\n<p>World!</p>" ]
+            [ "<title>Hello!</title><h1>Hello</h1>\n<p>World!</p>" ]
         ];
     };
     builder {
@@ -34,6 +34,7 @@ And you will get
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+    <title>Hello!</title>
       </head>
       <body>
         <div class="container">
