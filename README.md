@@ -48,7 +48,7 @@ And you will get
 Plack::Middleware::Bootstrap wraps HTML with Bootstrap design template.
 
 Plack::Middleware::Bootstrap provides better design to simple HTML.
-For example, You can generate simple API document with some tool, and prettify with Plack::Middleware::Bootstrap.
+For example, You can generate simple HTML document with some tool, and prettify with Plack::Middleware::Bootstrap.
 
 # SEE ALSO
 

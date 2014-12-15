@@ -10,6 +10,7 @@ use Plack::Util ();
 use Plack::Response;
 
 use Text::MicroTemplate::DataSection qw();
+use HTML::TreeBuilder::XPath;
 
 sub call {
     my ($self, $env) = @_;
@@ -22,13 +23,21 @@ sub call {
             my $plack_res = Plack::Response->new(@$res);
             return unless $plack_res->content_type =~ /\Atext\/html/;
 
-            my $body;
-            Plack::Util::foreach($res->[2] || [], sub { $body .= $_[0] });
+            my $content;
+            Plack::Util::foreach($res->[2] || [], sub { $content .= $_[0] });
+
+            my $tree = HTML::TreeBuilder::XPath->new();
+            $tree->ignore_unknown(0);
+            $tree->store_comments(1);
+            $tree->parse_content($content);
+
+            my $head = join "\n", map { $_->as_HTML(q{&<>'"}, '', {}) } $tree->findnodes('//head')->[0]->content_list;
+            my $body = join "\n", map { $_->as_HTML(q{&<>'"}, '', {}) } $tree->findnodes('//body')->[0]->content_list;
 
             my $renderer = Text::MicroTemplate::DataSection->new(
                 escape_func => undef
             );
-            $res->[2] = [ $renderer->render_mt('template.mt', 'head', $body) ];
+            $res->[2] = [ $renderer->render_mt('template.mt', $head, $body) ];
         });
 }
 
@@ -49,6 +58,7 @@ __DATA__
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+?= $head
   </head>
   <body>
     <div class="container">
