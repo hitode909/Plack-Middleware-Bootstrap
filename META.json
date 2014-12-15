@@ -1,5 +1,5 @@
 {
-   "abstract" : "A Plack Middleware to wrap simple HTML with Botstrap design template",
+   "abstract" : "A Plack Middleware to prettify simple HTML with Botstrap design template",
    "author" : [
       "This library is free software; you can redistribute it and/or modify"
    ],

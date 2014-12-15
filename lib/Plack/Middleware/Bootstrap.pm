@@ -76,7 +76,7 @@ __END__
 
 =head1 NAME
 
-Plack::Middleware::Bootstrap - A Plack Middleware to wrap simple HTML with Botstrap design template
+Plack::Middleware::Bootstrap - A Plack Middleware to prettify simple HTML with Botstrap design template
 
 =head1 SYNOPSIS
 
@@ -125,14 +125,23 @@ And you will get
 
 =head1 DESCRIPTION
 
-Plack::Middleware::Bootstrap wraps HTML with Bootstrap design template.
+Plack::Middleware::Bootstrap pretrifies HTML with Bootstrap design template.
 
 Plack::Middleware::Bootstrap provides better design to simple HTML.
+
 For example, You can generate simple HTML document with some tool, and prettify with Plack::Middleware::Bootstrap.
 
 =head1 SEE ALSO
 
-L<http://getbootstrap.com/> L<Plack::Middleware> L<Plack::Builder>
+=over
+
+=item * L<http://getbootstrap.com/>
+
+=item * L<Plack::Middleware>
+
+=item * L<Plack::Builder>
+
+=back
 
 =head1 LICENSE
 
