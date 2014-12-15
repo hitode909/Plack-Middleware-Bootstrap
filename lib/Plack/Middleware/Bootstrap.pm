@@ -112,7 +112,8 @@ And you will get
 
 Plack::Middleware::Bootstrap wraps HTML with Bootstrap design template.
 
-This is useful to make simple HTML better.
+Plack::Middleware::Bootstrap provides better design to simple HTML.
+For example, You can generate simple HTML document with some tool, and prettify with Plack::Middleware::Bootstrap.
 
 =head1 SEE ALSO
 
