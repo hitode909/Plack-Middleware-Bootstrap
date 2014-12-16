@@ -2,6 +2,9 @@ Revision history for Perl extension Plack-Middleware-Bootstrap
 
 {{$NEXT}}
 
+0.04 2014-12-16T01:56:21Z
+    - Fix pod
+
 0.03 2014-12-15T08:57:56Z
     - Fix markup
 
