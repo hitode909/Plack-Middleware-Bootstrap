@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/hitode909/Plack-Middleware-Bootstrap.png?branch=master)](https://travis-ci.org/hitode909/Plack-Middleware-Bootstrap)
+[![Build Status](https://travis-ci.org/hitode909/Plack-Middleware-Bootstrap.svg?branch=master)](https://travis-ci.org/hitode909/Plack-Middleware-Bootstrap)
 # NAME
 
 Plack::Middleware::Bootstrap - A Plack Middleware to prettify simple HTML with Botstrap design template
@@ -11,7 +11,7 @@ Plack::Middleware::Bootstrap - A Plack Middleware to prettify simple HTML with B
         return [
             200,
             [ 'Content-Type' => 'text/html' ],
-            [ "<title>Hello!</title><h1>Hello</h1>\n<p>World!</p>" ]
+            [ "<head><title>Hello!</title></head><body><h1>Hello</h1>\n<p>World!</p></body>" ]
         ];
     };
     builder {
