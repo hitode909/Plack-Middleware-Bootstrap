@@ -1,5 +1,5 @@
 {
-   "abstract" : "A Plack Middleware to prettify simple HTML with Botstrap design template",
+   "abstract" : "A Plack Middleware to prettify simple HTML with Bootstrap design template",
    "author" : [
       "This library is free software; you can redistribute it and/or modify"
    ],
@@ -66,9 +66,10 @@
          "web" : "https://github.com/hitode909/Plack-Middleware-Bootstrap"
       }
    },
-   "version" : "0.04",
+   "version" : "0.05",
    "x_authority" : "cpan:HITODE",
    "x_contributors" : [
+      "Lance Wicks <lw@judocoach.com>",
       "hitode909 <hitode909@gmail.com>"
    ]
 }

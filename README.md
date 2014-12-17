@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/hitode909/Plack-Middleware-Bootstrap.svg?branch=master)](https://travis-ci.org/hitode909/Plack-Middleware-Bootstrap)
 # NAME
 
-Plack::Middleware::Bootstrap - A Plack Middleware to prettify simple HTML with Botstrap design template
+Plack::Middleware::Bootstrap - A Plack Middleware to prettify simple HTML with Bootstrap design template
 
 # SYNOPSIS
 
@@ -50,7 +50,7 @@ And you will get
 
 # DESCRIPTION
 
-Plack::Middleware::Bootstrap pretrifies HTML with Bootstrap design template.
+Plack::Middleware::Bootstrap pretifies HTML with Bootstrap design template.
 
 Plack::Middleware::Bootstrap provides better design to simple HTML.
 
