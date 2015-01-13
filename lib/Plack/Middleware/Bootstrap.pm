@@ -38,6 +38,7 @@ sub call {
                 escape_func => undef
             );
             $res->[2] = [ $renderer->render_mt('template.mt', $head, $body) ];
+            Plack::Util::header_remove($res->[1], 'Content-Length');
         });
 }
 

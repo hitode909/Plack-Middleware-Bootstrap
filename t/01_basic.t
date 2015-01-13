@@ -127,5 +127,22 @@ subtest 'when not HTML' => sub {
     };
 };
 
-done_testing;
+subtest 'Content-Length of filtered content is removed' => sub {
+    my $app = builder {
+        enable 'Bootstrap';
+        sub {
+            my $content = "<head>Hello</head><body>World!</body>";
+            return [ 200, [ 'Content-Type' => 'text/html; charset=utf-8', 'Content-Length' => length($content), ], [ $content ] ];
+        }
+    };
 
+    test_psgi $app => sub {
+        my $server = shift;
+
+        my $res = $server->(GET "http://localhost/");
+        is $res->code, 200;
+        ok !$res->header('Content-Length');
+    };
+};
+
+done_testing;
