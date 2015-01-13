@@ -2,6 +2,9 @@ Revision history for Perl extension Plack-Middleware-Bootstrap
 
 {{$NEXT}}
 
+0.06 2015-01-13T01:19:06Z
+    - remove content-length header (thanks songmu)
+
 0.05 2014-12-17T00:19:09Z
     - Update pod
 
