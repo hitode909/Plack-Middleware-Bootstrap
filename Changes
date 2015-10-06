@@ -2,6 +2,9 @@ Revision history for Perl extension Plack-Middleware-Bootstrap
 
 {{$NEXT}}
 
+0.07 2015-10-06T07:10:36Z
+  - Skip Bootstrapping if content seems compressed (astj++)
+
 0.06 2015-01-13T01:19:06Z
     - remove content-length header (thanks songmu)
 
