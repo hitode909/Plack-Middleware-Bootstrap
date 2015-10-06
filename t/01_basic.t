@@ -145,4 +145,24 @@ subtest 'Content-Length of filtered content is removed' => sub {
     };
 };
 
+subtest 'No compress when Content-Encoding specified' => sub {
+    note 'Middleware::Bootstrap cannot handle compressed content, so skip if content seems compressed.';
+    my $content = "<head>Hello</head><body>World!</body>";
+    my $app = builder {
+        enable 'Bootstrap';
+        sub {
+            # actually content is not compressed ;D
+            return [ 200, [ 'Content-Type' => 'text/html; charset=utf-8', 'Content-Encoding' => 'gzip', ], [ $content ] ];
+        }
+    };
+
+    test_psgi $app => sub {
+        my $server = shift;
+
+        my $res = $server->(GET "http://localhost/");
+        is $res->code, 200;
+        is $res->content, $content;
+    };
+};
+
 done_testing;
