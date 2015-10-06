@@ -22,6 +22,7 @@ sub call {
 
             my $plack_res = Plack::Response->new(@$res);
             return unless $plack_res->content_type =~ /\Atext\/html/;
+            return if $plack_res->content_encoding;
 
             my $content;
             Plack::Util::foreach($res->[2] || [], sub { $content .= $_[0] });
