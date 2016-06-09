@@ -38,7 +38,10 @@ sub call {
             my $renderer = Text::MicroTemplate::DataSection->new(
                 escape_func => undef
             );
-            $res->[2] = [ $renderer->render_mt('template.mt', $head, $body) ];
+
+            # render_mt returns Text::MicroTemplate::EncodedString.
+            $res->[2] = [ $renderer->render_mt('template.mt', $head, $body).q() ];
+
             Plack::Util::header_remove($res->[1], 'Content-Length');
         });
 }
